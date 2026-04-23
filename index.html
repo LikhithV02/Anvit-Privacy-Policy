@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Anvit</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --surface: #18181f;
+      --border: #2a2a38;
+      --accent: #7c6ff7;
+      --accent-soft: #5b55c4;
+      --text: #e2e2ec;
+      --muted: #8888a0;
+      --green: #4ade80;
+      --red: #f87171;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      border-radius: 18px;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(74, 222, 128, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .meta {
+      margin-bottom: 2rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    h2 .icon {
+      font-size: 1.1rem;
+    }
+
+    p { margin-bottom: 0.85rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 0.5rem 0 0.85rem 0;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 0.25rem 0 0.25rem 1.4rem;
+      position: relative;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.4rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .highlight-box {
+      background: rgba(124, 111, 247, 0.08);
+      border: 1px solid rgba(124, 111, 247, 0.25);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 0.75rem 0;
+    }
+
+    .highlight-box p { margin-bottom: 0.5rem; }
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+
+    .tag-local { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+    .tag-optional { background: rgba(124, 111, 247, 0.15); color: #a89cf9; }
+    .tag-never { background: rgba(248, 113, 113, 0.12); color: var(--red); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.75rem;
+    }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(42, 42, 56, 0.7);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo">🧠</div>
+      <h1>Privacy Policy</h1>
+      <p class="subtitle">Anvit: Local Agentic RAG</p>
+      <span class="badge">100% On-Device AI</span>
+    </header>
+
+    <p class="meta">Effective date: April 23, 2026 &nbsp;·&nbsp; Last updated: April 23, 2026</p>
+
+    <!-- Overview -->
+    <section>
+      <h2><span class="icon">🔒</span> Overview</h2>
+      <p>
+        Anvit is a privacy-first AI assistant that runs entirely on your device. It lets you chat with your documents using a local Gemma 4 language model — no cloud inference, no analytics, no tracking.
+      </p>
+      <p>
+        This policy explains what data Anvit stores locally, what limited information may leave your device, and how you remain in control at all times.
+      </p>
+    </section>
+
+    <!-- Data stored on device -->
+    <section>
+      <h2><span class="icon">📱</span> Data Stored on Your Device</h2>
+      <p>All of the following is stored <strong>only on your device</strong> and is never transmitted to any server:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chat history &amp; messages</td>
+            <td>Persist conversations across sessions</td>
+          </tr>
+          <tr>
+            <td>Uploaded PDF documents</td>
+            <td>Source material for document Q&amp;A</td>
+          </tr>
+          <tr>
+            <td>Text embeddings (vectors)</td>
+            <td>Enable local semantic search (RAG)</td>
+          </tr>
+          <tr>
+            <td>AI model files (LLM &amp; embedding)</td>
+            <td>Run inference fully offline after download</td>
+          </tr>
+          <tr>
+            <td>App settings &amp; preferences</td>
+            <td>Remember your configuration</td>
+          </tr>
+          <tr>
+            <td>HuggingFace token <span class="tag tag-optional">Optional</span></td>
+            <td>Authenticate model downloads (if provided)</td>
+          </tr>
+          <tr>
+            <td>Email address <span class="tag tag-optional">Optional</span></td>
+            <td>Pre-fill the feedback form (if provided)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Audio & Microphone -->
+    <section>
+      <h2><span class="icon">🎙️</span> Audio Data &amp; Microphone Usage</h2>
+      <p>Anvit requests the <code>RECORD_AUDIO</code> permission to enable voice-to-text interactions with your local AI agent.</p>
+      <div class="highlight-box">
+        <p><strong>On-Device Processing:</strong> All audio recording is processed strictly on your physical device using local speech-to-text engines.</p>
+        <p><strong>No Cloud Transmission:</strong> Audio data is never uploaded to any external servers, third parties, or cloud providers.</p>
+        <p><strong>No Retention:</strong> Raw audio files are deleted immediately after the local AI agent completes the transcription process.</p>
+      </div>
+    </section>
+
+    <!-- Network activity -->
+    <section>
+      <h2><span class="icon">🌐</span> Network Activity</h2>
+      <p>Anvit makes network requests in two narrow, user-initiated situations:</p>
+
+      <h3 style="font-size:0.9rem; font-weight:600; color:var(--muted); margin: 1rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">1. Model Downloads — HuggingFace</h3>
+      <p>
+        When you download a language or embedding model in Settings, Anvit fetches model files from
+        <a href="https://huggingface.co" target="_blank" rel="noopener">huggingface.co</a>. No personal data is sent. If you provide a HuggingFace token it is used only as an authorization header for faster downloads and is stored locally.
+      </p>
+
+      <h3 style="font-size:0.9rem; font-weight:600; color:var(--muted); margin: 1rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">2. Voluntary Feedback — Google Forms</h3>
+      <p>
+        If you tap <em>Report inaccuracy</em> and submit the form, the following is sent to Google Forms:
+      </p>
+      <ul>
+        <li>A hashed message ID (8-character hex, not linked to your identity)</li>
+        <li>The query you submitted and the AI response you found inaccurate</li>
+        <li>Your selected feedback reason</li>
+        <li>Your email address — <strong>only if you typed it in</strong></li>
+      </ul>
+      <p>This is entirely optional. You can dismiss the feedback dialog at any time without sending anything.</p>
+
+      <div class="highlight-box">
+        <p><strong>No other network calls are made.</strong> All AI inference, document retrieval, and embedding computation runs locally. Anvit has no telemetry, crash reporting, or background analytics.</p>
+      </div>
+    </section>
+
+    <!-- What we never do -->
+    <section>
+      <h2><span class="icon">🚫</span> What Anvit Never Does</h2>
+      <ul>
+        <li><span class="tag tag-never">Never</span> sends your documents or queries to cloud AI services</li>
+        <li><span class="tag tag-never">Never</span> uploads audio or transcriptions to external servers</li>
+        <li><span class="tag tag-never">Never</span> collects analytics, behavioral data, or usage telemetry</li>
+        <li><span class="tag tag-never">Never</span> displays advertisements or shares data with ad networks</li>
+        <li><span class="tag tag-never">Never</span> sells or monetizes your personal data</li>
+        <li><span class="tag tag-never">Never</span> accesses your files beyond what you explicitly select</li>
+      </ul>
+    </section>
+
+    <!-- Permissions -->
+    <section>
+      <h2><span class="icon">🛡️</span> Permissions Explained</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Why It's Needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>INTERNET</code></td>
+            <td>One-time model downloads from HuggingFace; optional feedback submission. Not used for inference.</td>
+          </tr>
+          <tr>
+            <td><code>RECORD_AUDIO</code></td>
+            <td>Voice-to-text queries. Audio never leaves your device.</td>
+          </tr>
+          <tr>
+            <td>File / Storage access</td>
+            <td>Selecting PDF files via the system file picker (scoped storage — only files you choose).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Children -->
+    <section>
+      <h2><span class="icon">👶</span> Children's Privacy</h2>
+      <p>
+        Anvit does not knowingly collect any personal information from children under 13 (or the applicable age of digital consent in your jurisdiction). The app is intended for general audiences. If you believe a child has provided personal data through the voluntary feedback form, contact us and we will remove it.
+      </p>
+    </section>
+
+    <!-- Third-party services -->
+    <section>
+      <h2><span class="icon">🔗</span> Third-Party Services</h2>
+      <p>Anvit interacts with the following third-party services in limited, user-initiated contexts:</p>
+      <ul>
+        <li><strong>HuggingFace</strong> — model file hosting. Governed by <a href="https://huggingface.co/privacy" target="_blank" rel="noopener">HuggingFace's Privacy Policy</a>.</li>
+        <li><strong>Google Forms</strong> — optional feedback collection. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+      </ul>
+      <p>No other third-party SDKs, analytics libraries, or advertising networks are included in the app.</p>
+    </section>
+
+    <!-- Data deletion -->
+    <section>
+      <h2><span class="icon">🗑️</span> Data Deletion</h2>
+      <p>
+        Because all data is stored locally on your device, you can delete it at any time:
+      </p>
+      <ul>
+        <li><strong>Chat history:</strong> Delete individual sessions or clear all history from within the app.</li>
+        <li><strong>Documents:</strong> Remove documents from any collection inside the app.</li>
+        <li><strong>All app data:</strong> Uninstall Anvit to permanently erase all stored data, models, and preferences.</li>
+      </ul>
+      <p>For feedback submissions already sent via Google Forms, contact us to request removal.</p>
+    </section>
+
+    <!-- Changes -->
+    <section>
+      <h2><span class="icon">📋</span> Changes to This Policy</h2>
+      <p>
+        If we make material changes to this privacy policy, we will update the effective date above and — where feasible — notify users within the app. Continued use of Anvit after changes are posted constitutes acceptance of the updated policy.
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2><span class="icon">✉️</span> Contact</h2>
+      <p>
+        Questions or concerns about this policy? Reach out at:
+        <a href="mailto:likhithv02@gmail.com">likhithv02@gmail.com</a>
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2026 Anvit. All AI processing is local. Your data stays yours.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
