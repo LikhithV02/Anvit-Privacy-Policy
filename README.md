@@ -2,7 +2,22 @@
 
 > A fully on-device AI assistant for intelligent document Q&A — powered by Gemma 4 with a multi-step agentic RAG pipeline. No cloud. No tracking. Your data stays on your device.
 
+Anvit helps you chat with PDFs, uncover key insights, compare documents, and get clear answers grounded in your own files — whether that's research papers, study material, reports, manuals, or personal notes. It goes beyond simple document search: complex questions are decomposed into smaller steps, the most relevant passages are retrieved across multiple passes, weak results are refined, and the final answer is grounded in your library with cited sources.
+
+Your documents, questions, and conversations never leave your phone.
+
 **Privacy Policy:** https://likhithv02.github.io/Anvit-Privacy-Policy/
+
+---
+
+## Try the App
+
+Anvit is currently in closed testing on the Play Store. To get access:
+
+1. Join the community group using **the same Google account that is signed in to your Play Store** — this is required, otherwise the Play Store opt-in will not recognise you as a tester: **https://groups.google.com/g/anvit-ai-community/**
+2. Open the first thread — it contains the Play Store opt-in link and step-by-step install instructions.
+
+> ⚠️ The email you join the group with **must match** the email on your Play Store account. If they differ, the closed-test build will not appear as installable.
 
 ---
 
@@ -20,11 +35,10 @@
 - **Relevance Evaluation (CRAG)** — Corrective RAG automatically detects poor retrieval results and retries with rephrased queries or supplemental passages
 - **Selective Content Reduction** — distills retrieved passages down to only what is most useful for the query, keeping the context window focused
 - **Multiple Collections** — organise documents into named collections and query each independently
+- **Cited Sources** — every answer includes the source document and the exact passages used to produce it
 
 ### Document & Input Support
 - **PDF Ingestion** — sentence-aware chunking with configurable overlap; local embedding computed on-device
-- **Voice Queries** — microphone input with on-device speech-to-text transcription; no audio ever leaves the device
-- **Image Input** — attach images to your queries for multimodal document analysis
 - **Multiple Embedding Models** — choose between EmbeddingGemma-300M (high quality) or Gecko-110M (faster)
 
 ### Platform & Performance
@@ -35,65 +49,44 @@
 
 ---
 
+## Great For
+
+- **Students** studying textbooks and research papers
+- **Professionals** reviewing contracts, reports, and specifications
+- **Researchers** querying large PDF archives
+- **Anyone** who values privacy over convenience
+
+Anvit is built as an open demonstration that powerful AI no longer requires sending your data to someone else's servers. Your phone is enough.
+
+---
+
 ## Agentic RAG Architecture
 
 Anvit's pipeline adapts dynamically to the complexity of each question. Every stage runs on-device.
 
-```
-User Query
-    │
-    ▼
-┌─────────────────────────────┐
-│        Query Router         │  ← Classifies the question as simple or complex
-└─────────────┬───────────────┘
-              │
-    ┌─────────┴──────────┐
-    │                    │
-    ▼                    ▼
-Single-Shot           Agentic
-  Path                 Path
-    │                    │
-    │              ┌─────▼──────────────────┐
-    │              │   Query Decomposer     │  ← Breaks complex questions into
-    │              │                        │    focused sub-queries
-    │              └─────┬──────────────────┘
-    │                    │
-    ▼                    ▼
-┌──────────────────────────────────────────┐
-│           Hybrid Retriever               │
-│   Vector Search  +  BM25 (FTS5)          │  ← Reciprocal Rank Fusion
-│   (dense semantic)   (sparse keyword)    │
-└──────────────────┬───────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│        Relevance Evaluator (CRAG)        │  ← Scores retrieval quality
-│   ACCEPT / REQUERY / SUPPLEMENT         │    Re-queries with rephrased
-└──────────────────┬───────────────────────┘    terms if needed (up to 2×)
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│      Selective Content Reducer           │  ← Trims chunks to highest-signal
-│                                          │    passages (~30% reduction)
-└──────────────────┬───────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│         Gemma 4 Generation               │
-│   (with optional native tool calling)    │  ← Model can call search_documents
-│                                          │    and get_document_section itself
-└──────────────────┬───────────────────────┘
-                   │
-                   ▼
-┌──────────────────────────────────────────┐
-│         Self-Critique Loop               │  ← Detects gaps in the answer;
-│                                          │    fetches supplemental context
-│                                          │    and refines response if needed
-└──────────────────┬───────────────────────┘
-                   │
-                   ▼
-           Final Answer
-     (with cited source passages)
+```mermaid
+flowchart TD
+    Q([User Query]):::io --> R{{Query Router}}:::router
+    R -- simple --> H
+    R -- complex --> D["Query Decomposer<br/><i>splits into focused sub-queries</i>"]:::stage
+    D --> H
+
+    H["Hybrid Retriever<br/>Vector Search + BM25 FTS5<br/><i>fused via Reciprocal Rank Fusion</i>"]:::stage
+    H --> C{"Relevance Evaluator<br/>CRAG"}:::decision
+    C -- ACCEPT --> RD
+    C -- "REQUERY / SUPPLEMENT (up to 2x)" --> H
+
+    RD["Selective Content Reducer<br/><i>trims to highest-signal passages (about 30 percent)</i>"]:::stage
+    RD --> G["Gemma 4 Generation<br/><i>with optional native tool calling:<br/>search_documents, get_document_section</i>"]:::llm
+    G --> S{"Self-Critique Loop"}:::decision
+    S -- "gap detected" --> H
+    S -- "complete" --> A(["Final Answer<br/><i>with cited source passages</i>"]):::io
+
+    classDef io fill:#1f2937,stroke:#60a5fa,stroke-width:2px,color:#f9fafb
+    classDef router fill:#312e81,stroke:#a78bfa,stroke-width:2px,color:#f9fafb
+    classDef stage fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f1f5f9
+    classDef decision fill:#422006,stroke:#fbbf24,stroke-width:2px,color:#fef3c7
+    classDef llm fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ecfdf5
 ```
 
 ### Key Design Decisions
